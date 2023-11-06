@@ -31,6 +31,20 @@ class AulaController extends Controller
 
         Aula::create($registrosAula);
 
-        return Redirect::route('index');
+        return Redirect::route('manipula-aula');
+    }
+
+    public function DeletarAula(Aula $registrosAula){
+        $registrosAula->delete();
+        return Redirect::route('manipula-aula');
+    }
+
+    public function BuscarAulaNome(Request $request){
+        $registrosAula = Aula::query();
+        $registrosAula->when($request->aula,function($query, $valor){
+            $query->where('aula','like','%',$valor,'%');
+        });
+        $registrosAula = $registrosAula->get();
+        return view('manipula_aula',['registrosAula' => $registrosAula]);
     }
 }
