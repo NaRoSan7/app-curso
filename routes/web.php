@@ -14,8 +14,10 @@ Route::post('/cadcategoria',[CategoriaController::class,'cadastroCat'])->name("c
 
 //rota para manipular a categoria
 Route::get('/manipulacategoria',[CategoriaController::class,'mostrarManipulaCategoria'])->name("manipula-categoria");
+
 //rota para mostrar as categorias cadastradas
 Route::get('/alterar-categoria/{registrosCategoria}',[CategoriaController::class,'MostrarAlterarCategoria'])->name("alterar-categoria");
+Route::put('/alterarbancocategoria/{registrosCategoria}',[CategoriaController::class,'AlterarBancoCategoria'])->name('alterar-banco-categoria');
 
 //rota para deletar a categoria
 Route::delete('/deletar-categoria/{registrosCategoria}',[CategoriaController::class,'DeletarCategoria'])->name('deletar-categoria');
@@ -31,11 +33,16 @@ Route::post('/cadcurso',[CursoController::class,'cadastroCurso'])->name("cadastr
 
 //rota para manipular o curso
 Route::get('/manipulacurso',[CursoController::class,'mostrarManipulaCurso'])->name("manipula-curso");
+
 //rota para mostrar os cursos cadastradas
 Route::get('/alterar-curso/{registrosCurso}',[CursoController::class,'MostrarAlterarCurso'])->name("alterar-curso");
+Route::put('/alterarbancocurso/{registrosCurso}',[CursoController::class,'AlterarBancoCurso'])->name('alterar-banco-curso');
 
 //rota para deletar o curso
 Route::delete('/deletar-curso/{registrosCurso}',[CursoController::class,'DeletarCurso'])->name('deletar-curso');
+
+//rota para buscar por nome do curso
+Route::get('/buscacursonome',[CursoController::class,'BuscarCursoNome'])->name("busca-curso-nome");
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -45,9 +52,14 @@ Route::post('/cadaula',[AulaController::class,'cadastroAula'])->name("cadastro-a
 
 //rota para manipular a aula
 Route::get('/manipulaaula',[AulaController::class,'mostrarManipulaAula'])->name("manipula-aula");
+
 //rota para mostrar as aulas cadastradas
 Route::get('/alterar-aula/{registrosAula}',[AulaController::class,'MostrarAlterarAula'])->name("alterar-aula");
+Route::put('/alterarbancoaula/{registrosAula}',[AulaController::class,'AlterarBancoAula'])->name('alterar-banco-aula');
 
 //rota para deletar a aula
 Route::delete('/deletar-aula/{registrosAula}',[AulaController::class,'DeletarAula'])->name('deletar-aula');
+
+//rota para buscar por nome da aula
+Route::get('/buscaaulanome',[AulaController::class,'BuscarAulaNome'])->name("busca-aula-nome");
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -45,9 +45,31 @@ class CursoController extends Controller
     public function BuscarCursoNome(Request $request){
         $registrosCurso = Curso::query();
         $registrosCurso->when($request->curso,function($query, $valor){
-            $query->where('curso','like','%',$valor,'%');
+            $query->where('nomecurso','like','%'.$valor.'%');
         });
         $registrosCurso = $registrosCurso->get();
         return view('manipula_curso',['registrosCurso' => $registrosCurso]);
+    }
+
+    public function MostrarAlterarCurso(Curso $registrosCurso){
+        //$registrosCurso = Curso::All();
+        return view('altera_curso',['registrosCurso' => $registrosCurso]);
+    }
+
+    public function AlterarBancoCurso(){
+        $registros = $request->validate([
+            'nomecurso' => 'string|required',
+            'cargahoraria' => 'string|required',
+            'idcategoria' => 'required',
+            'valor' => 'numeric|required'
+        ]);
+
+        //Esta linha é que altera o registro no banco.
+        $registrosCurso->fill($registros);
+        $registrosCurso->save();
+
+
+       //alert("Dados alterados com sucesso");
+       return Redirect::route('manipula-aula');
     }
 }
